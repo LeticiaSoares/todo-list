@@ -1,0 +1,10 @@
+.form {
+    font-family: monospace;
+    width: 100%;
+}
+.form__title {
+    color: #a02a2a;
+}
+.form__text{
+    font-size: 16px;
+}

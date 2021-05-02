@@ -7,7 +7,13 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: ['babel-loader'],
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+            plugins: ['@babel/plugin-proposal-class-properties','@babel/plugin-transform-runtime'],
+          }
+        },
       },
       {
         test: /\.css$/i,
@@ -18,6 +24,19 @@ module.exports = {
         use: {
           loader: 'url-loader',
         },
+      },
+      {
+        test: /\.(gif|png|jpe?g|svg)$/i,
+        use:[
+          'file-loader',
+          {
+            loader: 'image-webpack-loader',
+            options: {
+              bypassOnDebug: true,
+              disable: true,
+            },
+          },
+        ]
       },
     ],
   },
@@ -30,5 +49,6 @@ module.exports = {
   },
   devServer: {
     contentBase: path.resolve(__dirname, './public'),
-  },
+    historyApiFallback: true
+  }
 };
